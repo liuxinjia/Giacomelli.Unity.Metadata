@@ -11,7 +11,7 @@ namespace Giacomelli.Unity.Metadata.Domain
 		/// Gets the prefabs.
 		/// </summary>
 		/// <returns>The prefabs.</returns>
-        IEnumerable<PrefabMetadata> GetPrefabs();
+        IEnumerable<PrefabMetadata> GetPrefabs(string fileFilters);
 
 		/// <summary>
 		/// Fix the missing MonoBehaviours.
@@ -19,5 +19,10 @@ namespace Giacomelli.Unity.Metadata.Domain
 		/// <param name="prefab">Prefab.</param>
 		/// <param name="missingMonoBehaviours">Missing mono behaviours.</param>
         void FixMissingMonobehaviours(PrefabMetadata prefab, IEnumerable<MonoBehaviourMetadata> missingMonoBehaviours);
-	}
+		/// <summary>
+		/// 
+		/// </summary>
+		IPrefabMetadataWriter Writer { get; }
+
+    }
 }

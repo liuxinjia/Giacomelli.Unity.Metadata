@@ -71,11 +71,11 @@ namespace Giacomelli.Unity.Metadata.Infrastructure.IO.Readers.Yaml
             }
         }
 
-        private static int ReadFileId(string document, Regex regex)
+        private static long ReadFileId(string document, Regex regex)
         {
             try
             {
-                return Convert.ToInt32(regex.Match(document).Groups["fileId"].Value, CultureInfo.InvariantCulture);
+                return Convert.ToInt64(regex.Match(document).Groups["fileId"].Value, CultureInfo.InvariantCulture);
             }
             catch (Exception ex)
             {

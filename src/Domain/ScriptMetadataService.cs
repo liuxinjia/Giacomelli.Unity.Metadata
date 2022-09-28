@@ -52,7 +52,7 @@ namespace Giacomelli.Unity.Metadata.Domain
 		/// </summary>
 		/// <returns>The full name by file identifier.</returns>
 		/// <param name="fileId">File identifier.</param>
-        public string GetFullNameByFileId(int fileId)
+        public string GetFullNameByFileId(long fileId)
         {
             var script = GetScripts().FirstOrDefault(s => s.FileId == fileId);
 

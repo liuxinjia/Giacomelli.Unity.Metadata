@@ -18,6 +18,6 @@ namespace Giacomelli.Unity.Metadata.Domain
 		/// </summary>
 		/// <returns>The full name by file identifier.</returns>
 		/// <param name="fileId">File identifier.</param>
-        string GetFullNameByFileId(int fileId);
+        string GetFullNameByFileId(long fileId);
     }
 }

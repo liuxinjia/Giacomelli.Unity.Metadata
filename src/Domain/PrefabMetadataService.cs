@@ -13,13 +13,17 @@ namespace Giacomelli.Unity.Metadata.Domain
         private readonly IFileSystem m_fs;
         private readonly ITypeService m_typeService;
 
-		/// <summary>
-		/// Initializes a new instance of the <see cref="T:Giacomelli.Unity.Metadata.Domain.PrefabMetadataService"/> class.
-		/// </summary>
-		/// <param name="prefabMetadataReader">Prefab metadata reader.</param>
-		/// <param name="prefabMetadataWriter">Prefab metadata writer.</param>
-		/// <param name="fileSystem">File system.</param>
-		/// <param name="typeService">Type service.</param>
+        /// <summary>
+        /// 
+        /// </summary>
+        public IPrefabMetadataWriter Writer => m_writer;
+        /// <summary>
+        /// Initializes a new instance of the <see cref="T:Giacomelli.Unity.Metadata.Domain.PrefabMetadataService"/> class.
+        /// </summary>
+        /// <param name="prefabMetadataReader">Prefab metadata reader.</param>
+        /// <param name="prefabMetadataWriter">Prefab metadata writer.</param>
+        /// <param name="fileSystem">File system.</param>
+        /// <param name="typeService">Type service.</param>
         public PrefabMetadataService(
             IPrefabMetadataReader prefabMetadataReader,
             IPrefabMetadataWriter prefabMetadataWriter,
@@ -36,13 +40,14 @@ namespace Giacomelli.Unity.Metadata.Domain
 		/// Gets the prefabs.
 		/// </summary>
 		/// <returns>The prefabs.</returns>
-        public IEnumerable<PrefabMetadata> GetPrefabs()
+        public IEnumerable<PrefabMetadata> GetPrefabs(string fileFilters)
         {
             var prefabs = new List<PrefabMetadata>();
             var prefabFiles = m_fs.GetFiles("*.prefab");
 
             foreach (var path in prefabFiles)
             {
+                if (path.Contains(fileFilters)) continue;
                 var prefab = m_reader.Read(path);
                 prefab.Name = m_fs.GetFileNameWithoutExtension(path);
                 prefab.Path = path;
@@ -62,9 +67,11 @@ namespace Giacomelli.Unity.Metadata.Domain
             foreach (var m in missingMonoBehaviours)
             {     
                 var scriptType = m_typeService.GetTypeByName(m.Script.FullName);
+
                 var newGuid = m_typeService.GetGuid(scriptType);
                 m_writer.ReplaceGuid(m.Script, newGuid, prefab.Path);
             }
         }
+
     }
 }

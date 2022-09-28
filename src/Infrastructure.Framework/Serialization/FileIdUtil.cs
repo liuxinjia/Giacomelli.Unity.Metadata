@@ -14,7 +14,7 @@ namespace Giacomelli.Unity.Metadata.Infrastructure.Framework.Serialization
 		/// </summary>
 		/// <returns>The type.</returns>
 		/// <param name="type">Type.</param>
-        public static int FromType(Type type)
+        public static long FromType(Type type)
         {
             // http://forum.unity3d.com/threads/yaml-fileid-hash-function-for-dll-scripts.252075/#post-1695479
             string toBeHashed = "s\0\0\0" + type.Namespace + type.Name;
@@ -23,7 +23,7 @@ namespace Giacomelli.Unity.Metadata.Infrastructure.Framework.Serialization
             {
                 byte[] hashed = hash.ComputeHash(Encoding.UTF8.GetBytes(toBeHashed));
 
-                int result = 0;
+                long result = 0;
 
                 for (int i = 3; i >= 0; --i)
                 {

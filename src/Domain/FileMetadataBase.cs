@@ -12,7 +12,7 @@ namespace Giacomelli.Unity.Metadata.Domain
 		/// Gets or sets the file identifier.
 		/// </summary>
 		/// <value>The file identifier.</value>
-        public int FileId { get; set; }
+        public long FileId { get; set; }
 
 		/// <summary>
 		/// Gets or sets the full name.

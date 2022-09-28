@@ -10,7 +10,7 @@
     <RootNamespace>Giacomelli.Unity.Metadata.Infrastructure.IO.FunctionalTests</RootNamespace>
     <AssemblyName>Giacomelli.Unity.Metadata.Infrastructure.IO.FunctionalTests</AssemblyName>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
